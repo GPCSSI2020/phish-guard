@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="./images/logo.png" /> -->
+    <title>Phishing Checker</title>
+    <style>
+        body{
+            background-image: url('./images/phish2.jpg');
+        }
+        .header {
+            border-style: outset;
+            border-width: 10px;
+            text-align: center;
+            background-color: grey;
+            color: white;
+            margin: 10px;
+        }
+        .logo-image {
+            text-align: center;
+        }
+        .form {
+            text-align: center;
+            align-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Phishing Url detection</h2>
+    </div>
+    <div class="logo-image">
+        <img src="./images/logo.png" alt="Detect phishing" width="720px" height="300px">
+    </div>
+    <div class="form">
+        <form>
+            <label for="url_input" style="font-size: 20px;font-weight: bold;color: bisque;">Enter the URL:</label>
+            <input type="text" name="url" id="url_input" style="border-style: outset;border-width: 4px;width: 50%;">
+            <button id="verify_url" type="button">Check</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('verify_url').addEventListener('click',function(){
+            let url = document.getElementById('url_input').value;
+            let data = {url:url};
+            fetch("http://127.0.0.1:5000/verify", {
+                method: "POST", 
+                body: JSON.stringify(data)
+            }).then(res => {
+                console.log("Request complete! response:", res.body);
+                return res.json()
+            }).then(data=>{
+                console.log(data.phishing);
+                if (data.phishing == 0) {
+                    alert("Url is not safe")
+                }
+                else {
+                    alert("Url is safe")
+                }
+            });
+        })
+    </script>
+</body>
+</html>
