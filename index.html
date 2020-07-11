@@ -11,48 +11,7 @@
          .logo-image {
             text-align: center;
         }
-        @keyframes dot-keyframes {
-            0% 
-            {
-            opacity: 0.4;
-            transform: scale(1, 1);
-            }
-
-            50% {
-            opacity: 1;
-            transform: scale(1.2, 1.2);
-        }
-            100% {
-            opacity: 0.4;
-            transform: scale(1, 1);
-        }
-}
-
-    .loading-dots 
-    {
-        text-align: center;
-        width: 100%;
-    }
-    .loading-dots--dot 
-    {
-        animation: dot-keyframes 1.5s infinite ease-in-out;
-        background-color: #fff;
-        border-radius: 10px;
-        display: inline-block;
-        height: 10px;
-        width: 10px;
-        margin: 15px;
-    }
-    .loading-dots--dot:nth-child(2) 
-    {
-        animation-delay: 0.5s;
-    }
-
-    .loading-dots--dot:nth-child(3) 
-    {
-        animation-delay: 1s;
-    }
-
+        
     body
     {
         background-image: url('./images/phish2.jpg');
@@ -66,15 +25,15 @@
     </div>
     <center style="margin-top: 50px;">
      
-      <div class="single-url">
+     
       <div class="input-group input-group-lg" style="width: 800px;margin-top: 50px">
         <div class="input-group-prepend" >
-          <span id="url_input" class="input-group-text" id="inputGroup-sizing-lg">Enter a URL:</span>
+          <span class="input-group-text">Enter a URL:</span>
         </div>
-        <input type="text" class="form-control" id="url"   value="">
+        <input type="text" name="url" id="url_input" class="form-control" >
           <button type="submit" id="verify_url" class="btn btn-primary btn-lg btn-light mb-2" style="margin-left: 10px">Submit</button>
              
-      </div>
+   
     </div>
    
      
@@ -91,10 +50,10 @@
             }).then(data=>{
                 console.log(data.phishing);
                 if (data.phishing == 0) {
-                    alert("Url is not safe")
+                    alert("This Url is Phishing !!!")
                 }
                 else {
-                    alert("Url is safe")
+                    alert("This Url is not Phishing.")
                 }
             });
         })
